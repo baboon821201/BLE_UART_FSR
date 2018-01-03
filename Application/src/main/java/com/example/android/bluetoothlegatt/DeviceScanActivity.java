@@ -16,16 +16,23 @@
 
 package com.example.android.bluetoothlegatt;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,15 +54,66 @@ public class DeviceScanActivity extends ListActivity {
     private boolean mScanning;
     private Handler mHandler;
 
+    private int ACCESS_COARSE_LOCATION_REQUEST_CODE = 001;
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle(R.string.title_devices);
         mHandler = new Handler();
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED){
+            if (android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+                Toast.makeText(this, "The permission to get BLE location data is required", Toast.LENGTH_SHORT).show();
+            }else{
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }else{
+            Toast.makeText(this, "Location permissions already granted", Toast.LENGTH_SHORT).show();
+        }
+
+        if (Build.VERSION.SDK_INT >= 23){
+            final LocationManager LocManager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+            //檢查手機的定位功能是否已開啟
+            if (LocManager.isProviderEnabled( LocationManager.GPS_PROVIDER )){
+                if ( android.support.v4.app.ActivityCompat.checkSelfPermission(DeviceScanActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED ){
+                    //已經授權APP使用定位服務，接著的動作
+                }
+                else{
+                    //尚未授權使用定位服務時，向使用者詢問。
+                    //其結果會在 onRequestPermissionsResult 進行動作
+                    android.support.v4.app.ActivityCompat.requestPermissions(DeviceScanActivity.this,
+                            new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                            ACCESS_COARSE_LOCATION_REQUEST_CODE);
+                }
+            }
+            else{
+                //詢問是否要開啟手機定位功能
+                AlertDialog.Builder ad = new AlertDialog.Builder(this);
+                ad.setTitle("Need Location.");
+                ad.setMessage("If you do not open the location, you will not be able to find the BLE device");
+                ad.setCancelable(false); // 避免點選畫面其他地方而關閉 AlertDialog
+                ad.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                });
+                ad.setNegativeButton("No", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        finish();
+                    }
+                });
+                ad.show();
+            }
+        }
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
@@ -77,6 +135,18 @@ public class DeviceScanActivity extends ListActivity {
             return;
         }
     }
+
+   @Override
+   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+       super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+       if (requestCode == ACCESS_COARSE_LOCATION_REQUEST_CODE){
+           if ( grantResults[0] != PackageManager.PERMISSION_GRANTED ){
+               //當使用者不同意授權時，顯示出訊息
+               Toast.makeText(DeviceScanActivity.this, "Please make the Location enabled, otherwise you can't find any BLE device.", Toast.LENGTH_LONG);
+           }
+       }
+   }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
