@@ -294,7 +294,18 @@ public class BluetoothLeService extends Service {
             Log.w(TAG, "BluetoothAdapter not initialized");
             return;
         }
-        mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+        //mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+
+        boolean isEnableNotification =  mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+        if(isEnableNotification) {
+            List<BluetoothGattDescriptor> descriptorList = characteristic.getDescriptors();
+            if(descriptorList != null && descriptorList.size() > 0) {
+                for(BluetoothGattDescriptor descriptor : descriptorList) {
+                    descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                    mBluetoothGatt.writeDescriptor(descriptor);
+                }
+            }
+        }
 
         // This is specific to Heart Rate Measurement.
         if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {

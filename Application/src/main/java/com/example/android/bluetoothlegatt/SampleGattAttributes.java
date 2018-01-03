@@ -30,9 +30,14 @@ public class SampleGattAttributes {
         // Sample Services.
         attributes.put("0000180d-0000-1000-8000-00805f9b34fb", "Heart Rate Service");
         attributes.put("0000180a-0000-1000-8000-00805f9b34fb", "Device Information Service");
+        attributes.put("6e400001-b5a3-f393-e0a9-e50e24dcca9e", "NUS Service");
+
         // Sample Characteristics.
         attributes.put(HEART_RATE_MEASUREMENT, "Heart Rate Measurement");
         attributes.put("00002a29-0000-1000-8000-00805f9b34fb", "Manufacturer Name String");
+        attributes.put("6e400003-b5a3-f393-e0a9-e50e24dcca9e", "NUS RX Characteristic");
+        attributes.put("6e400002-b5a3-f393-e0a9-e50e24dcca9e", "NUS TX Characteristic");
+
     }
 
     public static String lookup(String uuid, String defaultName) {
