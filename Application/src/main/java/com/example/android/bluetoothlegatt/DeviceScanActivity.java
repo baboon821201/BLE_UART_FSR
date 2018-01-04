@@ -68,13 +68,15 @@ public class DeviceScanActivity extends ListActivity {
 
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED){
-            if (android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
-                Toast.makeText(this, "The permission to get BLE location data is required", Toast.LENGTH_SHORT).show();
+            if (android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)){
+                Toast.makeText(this, "The permission to get BLE location data is required", Toast.LENGTH_LONG).show();
             }else{
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         }else{
-            Toast.makeText(this, "Location permissions already granted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Location permissions already granted", Toast.LENGTH_LONG).show();
         }
 
         if (Build.VERSION.SDK_INT >= 23){
@@ -136,17 +138,17 @@ public class DeviceScanActivity extends ListActivity {
         }
     }
 
-   @Override
-   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-       super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-       if (requestCode == ACCESS_COARSE_LOCATION_REQUEST_CODE){
-           if ( grantResults[0] != PackageManager.PERMISSION_GRANTED ){
-               //當使用者不同意授權時，顯示出訊息
-               Toast.makeText(DeviceScanActivity.this, "Please make the Location enabled, otherwise you can't find any BLE device.", Toast.LENGTH_LONG);
-           }
-       }
-   }
-
+   //@Override
+   //public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+   //    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+   //    if (requestCode == ACCESS_COARSE_LOCATION_REQUEST_CODE){
+   //        if ( grantResults[0] != PackageManager.PERMISSION_GRANTED ){
+   //            //當使用者不同意授權時，顯示出訊息
+   //            Toast.makeText(DeviceScanActivity.this, "Please make the Location enabled, otherwise you can't find any BLE device.", Toast.LENGTH_LONG);
+   //        }
+   //    }
+   //}
+//
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
