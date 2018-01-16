@@ -6,22 +6,22 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1516080933132"
+    timestamp="1516083550735"
     token="-41075042762322772"
     verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="896" />
+        duration="852" />
     <task
         name="instant-run-dex"
-        duration="431" />
+        duration="411" />
     <task
         name="instant-run-transform"
-        duration="35" />
+        duration="29" />
     <task
         name="verifier"
-        duration="10" />
+        duration="11" />
 
     <artifact
         location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\reload-dex\debug\classes.dex"
@@ -29,7 +29,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1516080719134"
+        timestamp="1516083480249"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -69,25 +69,8 @@
             type="SPLIT_MAIN" />
     </build>
     <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1516080813835"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-    </build>
-    <build
         build-mode="HOT_WARM"
-        timestamp="1516080850679"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\builds\debug\1516080850679\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        build-mode="HOT_WARM"
-        timestamp="1516080933132"
+        timestamp="1516083550735"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\reload-dex\debug\classes.dex"

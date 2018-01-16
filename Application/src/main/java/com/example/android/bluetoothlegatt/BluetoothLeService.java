@@ -30,8 +30,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.text.format.DateFormat;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -155,6 +158,9 @@ public class BluetoothLeService extends Service {
                     i3 = data[4]*256 + (data[5] & 0xff);
                     i4 = data[6]*256 + (data[7] & 0xff);
                     i5 = (i1+i2+i3+i4)/4;
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Calendar c = Calendar.getInstance();
+                    String t = df.format(c.getTime());
                     /*
                     String s1 = String.valueOf(i1);
                     String s2 = String.valueOf(i2);
@@ -163,7 +169,7 @@ public class BluetoothLeService extends Service {
                     String all = s1 + s2 + s3 + s4;
                     */
                     //stringBuilder.append(String.format("%02X ", byteChar));
-                    intent.putExtra(EXTRA_DATA, "  " + 1 + "  " + 2 + "  " + 3 + "  " + 4 + " " + "avg" + "\n"
+                    intent.putExtra(EXTRA_DATA, t + "\n" + 1 + "  " + 2 + "  " + 3 + "  " + 4 + " " + "avg" + "\n"
                             + i1 + "  " + i2 + "  " + i3 + "  " + i4 + "  " + i5);
                 }
             }
