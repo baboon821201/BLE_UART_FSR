@@ -144,9 +144,28 @@ public class BluetoothLeService extends Service {
             final byte[] data = characteristic.getValue();
             if (data != null && data.length > 0) {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
-                for(byte byteChar : data)
-                    stringBuilder.append(String.format("%02X ", byteChar));
-                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+                int i1 = 0;
+                int i2 = 0;
+                int i3 = 0;
+                int i4 = 0;
+                int i5 = 0;
+                for(byte byteChar : data){
+                    i1 = data[0]*256 + (data[1] & 0xff);
+                    i2 = data[2]*256 + (data[3] & 0xff);
+                    i3 = data[4]*256 + (data[5] & 0xff);
+                    i4 = data[6]*256 + (data[7] & 0xff);
+                    i5 = (i1+i2+i3+i4)/4;
+                    /*
+                    String s1 = String.valueOf(i1);
+                    String s2 = String.valueOf(i2);
+                    String s3 = String.valueOf(i3);
+                    String s4 = String.valueOf(i4);
+                    String all = s1 + s2 + s3 + s4;
+                    */
+                    //stringBuilder.append(String.format("%02X ", byteChar));
+                    intent.putExtra(EXTRA_DATA, "  " + 1 + "  " + 2 + "  " + 3 + "  " + 4 + " " + "avg" + "\n"
+                            + i1 + "  " + i2 + "  " + i3 + "  " + i4 + "  " + i5);
+                }
             }
         }
         sendBroadcast(intent);
