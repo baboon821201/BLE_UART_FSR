@@ -7,6 +7,7 @@ MERGED from [com.android.support:support-v13:26.1.0] C:\Users\Lab70826\.gradle\c
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\7595677883aa3e10053a0131dd402442\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f11c883cd420ceca7254ddf0883c4558\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\0f447e1904cf046a1774f3e9f942fd71\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\29914e68a6ac7fe0687e8379d415d1d3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\0fb8668f1fe93b0707c67d750d9930c8\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\64fc7e54180244afb08c6fa312f8c203\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0f61c853ead96be5789b2a3d78205f11\AndroidManifest.xml:17:1-31:12
@@ -61,6 +62,8 @@ MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Lab70826\.gradle\ca
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f11c883cd420ceca7254ddf0883c4558\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\0f447e1904cf046a1774f3e9f942fd71\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\0f447e1904cf046a1774f3e9f942fd71\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\29914e68a6ac7fe0687e8379d415d1d3\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\29914e68a6ac7fe0687e8379d415d1d3\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\0fb8668f1fe93b0707c67d750d9930c8\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\0fb8668f1fe93b0707c67d750d9930c8\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\64fc7e54180244afb08c6fa312f8c203\AndroidManifest.xml:25:5-29:19
@@ -121,6 +124,8 @@ MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Lab70826\.gradle\ca
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f11c883cd420ceca7254ddf0883c4558\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\0f447e1904cf046a1774f3e9f942fd71\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\0f447e1904cf046a1774f3e9f942fd71\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\29914e68a6ac7fe0687e8379d415d1d3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\29914e68a6ac7fe0687e8379d415d1d3\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\0fb8668f1fe93b0707c67d750d9930c8\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\0fb8668f1fe93b0707c67d750d9930c8\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Lab70826\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\64fc7e54180244afb08c6fa312f8c203\AndroidManifest.xml:21:5-23:60

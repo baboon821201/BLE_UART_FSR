@@ -321,6 +321,7 @@ public class BluetoothLeService extends Service {
         }
         //mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
 
+
         boolean isEnableNotification =  mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
         if(isEnableNotification) {
             List<BluetoothGattDescriptor> descriptorList = characteristic.getDescriptors();
