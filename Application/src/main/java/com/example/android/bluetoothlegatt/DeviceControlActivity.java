@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ScrollView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
@@ -52,8 +53,9 @@ public class DeviceControlActivity extends Activity {
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 
-
-    Button btnScan, btnSave;
+    boolean stop=true;
+    ScrollView scrollView;
+    Button btnScan, btnClear, btnSave;
     private TextView mConnectionState, test;
     private TextView mDataField;
     private String mDeviceName;
@@ -122,6 +124,7 @@ public class DeviceControlActivity extends Activity {
     // demonstrates 'Read' and 'Notify' features.  See
     // http://d.android.com/reference/android/bluetooth/BluetoothGatt.html for the complete
     // list of supported characteristic features.
+    /*
     private final ExpandableListView.OnChildClickListener servicesListClickListner =
             new ExpandableListView.OnChildClickListener() {
                 @Override
@@ -156,16 +159,17 @@ public class DeviceControlActivity extends Activity {
                     return false;
                 }
     };
+    */
     private void clearUI() {
-        mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
-        mDataField.setText(R.string.no_data);
+        //mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
+        //mDataField.setText(R.string.no_pressure);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //改
-        setContentView(R.layout.gatt_services_characteristics);
+        setContentView(R.layout.scan_clear_save_button);
 
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
@@ -174,40 +178,21 @@ public class DeviceControlActivity extends Activity {
         //改
         // Sets up UI references.
 
-        ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
-        mGattServicesList = (ExpandableListView) findViewById(R.id.gatt_services_list);
-        mGattServicesList.setOnChildClickListener(servicesListClickListner);
-        mConnectionState = (TextView) findViewById(R.id.connection_state);
+        //((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
+        //mGattServicesList = (ExpandableListView) findViewById(R.id.gatt_services_list);
+        //mGattServicesList.setOnChildClickListener(servicesListClickListner);
+        //mConnectionState = (TextView) findViewById(R.id.connection_state);
 
-        mDataField = (TextView) findViewById(R.id.data_value);
-
-        test=(TextView)findViewById(R.id.TextView0);
-        btnScan=(Button)findViewById(R.id.button0);
-        btnSave=(Button)findViewById(R.id.button1);
-        btnScan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mGattCharacteristics != null) {
-                    final BluetoothGattCharacteristic characteristic =FSR;
-                    final int charaProp = characteristic.getProperties();
-                    if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
-                        // If there is an active notification on a characteristic, clear
-                        // it first so it doesn't update the data field on the user interface.
-                        if (mNotifyCharacteristic != null) {
-                            mBluetoothLeService.setCharacteristicNotification(
-                                    mNotifyCharacteristic, false);
-                            mNotifyCharacteristic = null;
-                        }
-                        mBluetoothLeService.readCharacteristic(characteristic);
-                    }
-                    if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
-                        mNotifyCharacteristic = characteristic;
-                        mBluetoothLeService.setCharacteristicNotification(
-                                characteristic, true);
-                    }
-                }
-            }
-        });
+        mDataField = (TextView) findViewById(R.id.show);
+        scrollView = (ScrollView)findViewById(R.id.sv1);
+        //test=(TextView)findViewById(R.id.TextView0);
+        btnScan=(Button)findViewById(R.id.scan);
+        btnScan.setOnClickListener(StartScanClickListener);
+        btnClear = (Button)findViewById(R.id.clear);
+        btnClear.setEnabled(false);
+        btnClear.setOnClickListener(ClearClickListener);
+        btnSave=(Button)findViewById(R.id.save);
+        btnSave.setEnabled(false);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,14 +261,22 @@ public class DeviceControlActivity extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mConnectionState.setText(resourceId);
+                //mConnectionState.setText(resourceId);
             }
         });
     }
 
     private void displayData(String data) {
-        if (data != null) {
-            mDataField.setText(data);
+        if(!stop) {
+            if (data != null) {
+                mDataField.append(data);
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
+            }
         }
     }
 
@@ -326,7 +319,7 @@ public class DeviceControlActivity extends Activity {
 
                 //find which uuid we want
                 if(uuid.equals("6e400003-b5a3-f393-e0a9-e50e24dcca9e")){
-                    test.setText(uuid);
+                    //test.setText(uuid);
                     FSR=gattCharacteristic;
                 }
 
@@ -350,7 +343,7 @@ public class DeviceControlActivity extends Activity {
                 new String[] {LIST_NAME, LIST_UUID},
                 new int[] { android.R.id.text1, android.R.id.text2 }
         );
-        mGattServicesList.setAdapter(gattServiceAdapter);
+        //mGattServicesList.setAdapter(gattServiceAdapter);
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
@@ -361,4 +354,52 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
     }
+
+    //按下button時要做的事情
+    public Button.OnClickListener StartScanClickListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Button b = (Button) v;
+            if(b.getText().equals("Start Scan")){
+                if (mGattCharacteristics != null) {
+                    final BluetoothGattCharacteristic characteristic =FSR;
+                    final int charaProp = characteristic.getProperties();
+                    if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
+                        // If there is an active notification on a characteristic, clear
+                        // it first so it doesn't update the data field on the user interface.
+                        if (mNotifyCharacteristic != null) {
+                            mBluetoothLeService.setCharacteristicNotification(
+                                    mNotifyCharacteristic, false);
+                            mNotifyCharacteristic = null;
+                        }
+                        mBluetoothLeService.readCharacteristic(characteristic);
+                    }
+                    if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
+                        mNotifyCharacteristic = characteristic;
+                        mBluetoothLeService.setCharacteristicNotification(
+                                characteristic, true);
+                    }
+                }
+                b.setText("Stop Scan");
+                stop = false;
+            }else{
+                //mDataField.setText("No Pressure");
+                stop = true;
+                b.setText("Start Scan");
+                btnScan.setEnabled(false);
+                btnClear.setEnabled(true);
+                btnSave.setEnabled(true);
+            }
+        }
+    };
+
+    public Button.OnClickListener ClearClickListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Button b = (Button) v;
+            if(b.getText().equals("Clear Previous Data")){
+                btnScan.setEnabled(true);
+            }
+        }
+    };
 }

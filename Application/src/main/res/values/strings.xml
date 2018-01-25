@@ -37,4 +37,13 @@
     <string name="save_data">Save Data</string>
     <string name="no_pressure">No Pressure</string>
 
+    <string name="time">time</string>
+    <string name="s1">s1</string>
+    <string name="avg">avg</string>
+    <string name="s4">s4</string>
+    <string name="s3">s3</string>
+    <string name="s2">s2</string>
+    <string name="clear_previous_data">Clear Previous Data</string>
+
+
 </resources>
