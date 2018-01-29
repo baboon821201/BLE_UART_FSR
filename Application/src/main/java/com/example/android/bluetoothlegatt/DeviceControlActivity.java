@@ -193,11 +193,7 @@ public class DeviceControlActivity extends Activity {
         btnClear.setOnClickListener(ClearClickListener);
         btnSave=(Button)findViewById(R.id.save);
         btnSave.setEnabled(false);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+
 
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -399,6 +395,8 @@ public class DeviceControlActivity extends Activity {
             Button b = (Button) v;
             if(b.getText().equals("Clear Previous Data")){
                 btnScan.setEnabled(true);
+                mDataField.setText("");
+                btnClear.setEnabled(false);
             }
         }
     };

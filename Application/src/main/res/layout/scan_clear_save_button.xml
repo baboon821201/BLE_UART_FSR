@@ -28,7 +28,7 @@
         android:text="@string/clear_previous_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scan" />
+        app:layout_constraintTop_toBottomOf="@+id/save" />
 
     <Button
         android:id="@+id/save"
@@ -40,7 +40,7 @@
         android:text="@string/save_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clear" />
+        app:layout_constraintTop_toBottomOf="@+id/scan" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save">
+        app:layout_constraintTop_toBottomOf="@+id/clear">
 
         <LinearLayout
             android:layout_width="match_parent"
