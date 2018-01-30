@@ -188,11 +188,12 @@ public class DeviceControlActivity extends Activity {
         //test=(TextView)findViewById(R.id.TextView0);
         btnScan=(Button)findViewById(R.id.scan);
         btnScan.setOnClickListener(StartScanClickListener);
+        btnSave=(Button)findViewById(R.id.save);
+        btnSave.setEnabled(false);
         btnClear = (Button)findViewById(R.id.clear);
         btnClear.setEnabled(false);
         btnClear.setOnClickListener(ClearClickListener);
-        btnSave=(Button)findViewById(R.id.save);
-        btnSave.setEnabled(false);
+
 
 
         getActionBar().setTitle(mDeviceName);
@@ -396,8 +397,11 @@ public class DeviceControlActivity extends Activity {
             if(b.getText().equals("Clear Previous Data")){
                 btnScan.setEnabled(true);
                 mDataField.setText("");
+                btnSave.setEnabled(false);
                 btnClear.setEnabled(false);
             }
         }
     };
+
+
 }
