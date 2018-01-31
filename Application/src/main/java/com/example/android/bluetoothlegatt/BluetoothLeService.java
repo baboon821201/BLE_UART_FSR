@@ -66,6 +66,7 @@ public class BluetoothLeService extends Service {
     public final static String EXTRA_DATA =
             "com.example.bluetooth.le.EXTRA_DATA";
 
+
     public final static UUID UUID_HEART_RATE_MEASUREMENT =
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
 
@@ -173,7 +174,7 @@ public class BluetoothLeService extends Service {
                     intent.putExtra(EXTRA_DATA, t + "\n" + 1 + "  " + 2 + "  " + 3 + "  " + 4 + " " + "avg" + "\n"
                             + i1 + "  " + i2 + "  " + i3 + "  " + i4 + "  " + i5);
                                         */
-                    intent.putExtra(EXTRA_DATA, t + "\t\t\t\t" + i1 + "\t\t\t" + i2 + "\t\t\t" + i3 + "\t\t\t" + i4 + "\t\t\t" + i5 + "\n");
+                    intent.putExtra(EXTRA_DATA, t + "\t\t\t" + i1 + "\t\t" + i2 + "\t\t" + i3 + "\t\t" + i4 + "\t\t" + i5 + "\n");
                 }
             }
         }
