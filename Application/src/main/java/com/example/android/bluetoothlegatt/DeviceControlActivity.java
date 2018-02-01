@@ -57,7 +57,7 @@ public class DeviceControlActivity extends Activity {
     ScrollView scrollView;
     Button btnScan, btnClear, btnSave;
     private TextView mConnectionState, test;
-    private TextView mDataField;
+    private TextView mTime, mS1, mS2, mS3, mS4, mAvg;
     private String mDeviceName;
     private String mDeviceAddress;
     private ExpandableListView mGattServicesList;
@@ -183,7 +183,12 @@ public class DeviceControlActivity extends Activity {
         //mGattServicesList.setOnChildClickListener(servicesListClickListner);
         //mConnectionState = (TextView) findViewById(R.id.connection_state);
 
-        mDataField = (TextView) findViewById(R.id.show);
+        mTime = (TextView) findViewById(R.id.showTime);
+        mS1 = (TextView)findViewById(R.id.showS1);
+        mS2 = (TextView)findViewById(R.id.showS2);
+        mS3 = (TextView)findViewById(R.id.showS3);
+        mS4 = (TextView)findViewById(R.id.showS4);
+        mAvg = (TextView)findViewById(R.id.showAvg);
         scrollView = (ScrollView)findViewById(R.id.sv1);
         //test=(TextView)findViewById(R.id.TextView0);
         btnScan=(Button)findViewById(R.id.scan);
@@ -266,7 +271,14 @@ public class DeviceControlActivity extends Activity {
     private void displayData(String data) {
         if(!stop) {
             if (data != null) {
-                mDataField.append(data);
+                String[] dataArray = data.split(",");
+                mTime.append(dataArray[0]);
+                mS1.append(dataArray[1]);
+                mS2.append(dataArray[2]);
+                mS3.append(dataArray[3]);
+                mS4.append(dataArray[4]);
+                mAvg.append(dataArray[5]);
+                //mDataField.append(data);
                 scrollView.post(new Runnable() {
                     @Override
                     public void run() {
@@ -395,8 +407,13 @@ public class DeviceControlActivity extends Activity {
         public void onClick(View v) {
             Button b = (Button) v;
             if(b.getText().equals("Clear Previous Data")){
+                mTime.setText("");
+                mS1.setText("");
+                mS2.setText("");
+                mS3.setText("");
+                mS4.setText("");
+                mAvg.setText("");
                 btnScan.setEnabled(true);
-                mDataField.setText("");
                 btnSave.setEnabled(false);
                 btnClear.setEnabled(false);
             }

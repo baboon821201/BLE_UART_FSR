@@ -63,10 +63,10 @@
 
             <TextView
                 android:id="@+id/time"
-                android:layout_width="43dp"
+                android:layout_width="75dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
+                android:gravity="start"
                 android:text="@string/time"
                 android:textSize="16sp" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="start"
                 android:text="@string/s1"
                 android:textSize="16sp" />
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|end"
+                android:gravity="start"
                 android:text="@string/s2"
                 android:textSize="16sp" />
 
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|end"
+                android:gravity="start"
                 android:text="@string/s3"
                 android:textSize="16sp" />
 
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|end"
+                android:gravity="start"
                 android:text="@string/s4"
                 android:textSize="16sp" />
 
@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="start"
                 android:text="@string/avg"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -121,11 +121,66 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/show"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/showTime"
+                    android:layout_width="107dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="@string/time" />
+
+                <TextView
+                    android:id="@+id/showS1"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    tools:text="sensor1" />
+
+                <TextView
+                    android:id="@+id/showS2"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    tools:text="sensor2" />
+
+                <TextView
+                    android:id="@+id/showS3"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    tools:text="sensor3" />
+
+                <TextView
+                    android:id="@+id/showS4"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    tools:text="sensor4" />
+
+                <TextView
+                    android:id="@+id/showAvg"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    tools:text="average" />
+            </LinearLayout>
         </ScrollView>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
