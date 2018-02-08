@@ -22,10 +22,12 @@ import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
@@ -36,8 +38,19 @@ import android.widget.ExpandableListView;
 import android.widget.ScrollView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.Array;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,10 +69,14 @@ public class DeviceControlActivity extends Activity {
     boolean stop=true;
     ScrollView scrollView;
     Button btnScan, btnClear, btnSave;
+    String time, saveData;
+    String[] dataArray;
+    String[] dataArray1;
     private TextView mConnectionState, test;
     private TextView mTime, mS1, mS2, mS3, mS4, mAvg;
     private String mDeviceName;
     private String mDeviceAddress;
+
     private ExpandableListView mGattServicesList;
     private BluetoothLeService mBluetoothLeService;
     private ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics =
@@ -170,7 +187,8 @@ public class DeviceControlActivity extends Activity {
         super.onCreate(savedInstanceState);
         //改
         setContentView(R.layout.scan_clear_save_button);
-
+        //Environment.getDataDirectory();
+        Log.d("TAG", "file path = " + Environment.getDownloadCacheDirectory());
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
@@ -195,6 +213,7 @@ public class DeviceControlActivity extends Activity {
         btnScan.setOnClickListener(StartScanClickListener);
         btnSave=(Button)findViewById(R.id.save);
         btnSave.setEnabled(false);
+        btnSave.setOnClickListener(SaveDataClickListener);
         btnClear = (Button)findViewById(R.id.clear);
         btnClear.setEnabled(false);
         btnClear.setOnClickListener(ClearClickListener);
@@ -271,13 +290,18 @@ public class DeviceControlActivity extends Activity {
     private void displayData(String data) {
         if(!stop) {
             if (data != null) {
-                String[] dataArray = data.split(",");
+                dataArray = data.split(",");
                 mTime.append(dataArray[0]);
                 mS1.append(dataArray[1]);
                 mS2.append(dataArray[2]);
                 mS3.append(dataArray[3]);
                 mS4.append(dataArray[4]);
                 mAvg.append(dataArray[5]);
+                dataArray1 = data.split("\n,");
+
+
+
+                saveData = dataArray1[0] + "\t" + dataArray1[1] + "\t\t" + dataArray1[2] + "\t\t" + dataArray1[3] + "\t\t" + dataArray1[4] + "\t\t" + dataArray1[5] + "\t\t";
                 //mDataField.append(data);
                 scrollView.post(new Runnable() {
                     @Override
@@ -370,6 +394,10 @@ public class DeviceControlActivity extends Activity {
         public void onClick(View v) {
             Button b = (Button) v;
             if(b.getText().equals("Start Scan")){
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Calendar c = Calendar.getInstance();
+                String t = df.format(c.getTime());
+                time = t;
                 if (mGattCharacteristics != null) {
                     final BluetoothGattCharacteristic characteristic =FSR;
                     final int charaProp = characteristic.getProperties();
@@ -421,4 +449,63 @@ public class DeviceControlActivity extends Activity {
     };
 
 
+    public Button.OnClickListener SaveDataClickListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Button b = (Button) v;
+            if(b.getText().equals("Save Data")){
+                boolean hasExternalStorage = isExternalStorageWritable();
+                if(hasExternalStorage){
+                    String filename = time + ".txt";
+                    Log.d(TAG, "filename = " + filename);
+
+                    File path = Environment.getExternalStoragePublicDirectory("/FSR/Test/");
+                    File file = new File(path, filename);
+                    Log.d(TAG, "path = " + path);
+
+
+                    try {
+                        path.mkdirs();
+                        OutputStream outputStream = new FileOutputStream(file, true);
+                        String s1 = "Time" + "\t\t" + "sensor1" + "\t" + "sensor2" + "\t" + "sensor3" + "\t" + "sensor4" + "\t" + "Average" + "\n";
+                        String s2 = mTime.getText().toString() + "\t"
+                                + mS1.getText().toString() + "\t"
+                                + mS2.getText().toString() + "\t"
+                                + mS3.getText().toString() + "\t"
+                                + mS4.getText().toString() + "\t"
+                                + mAvg.getText().toString();
+
+                        String dataArrayString = saveData;
+                        String all = s1 + dataArrayString;
+                        outputStream.write(all.getBytes());
+                        outputStream.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        Log.w("ExternalStorage", "Error writing " + file, e);
+                    }
+                }
+                else{
+                    Toast.makeText(DeviceControlActivity.this, "no storage", Toast.LENGTH_LONG).show();
+                }
+
+                /*
+                String s1 = "Time" + "\t" + "sensor1" + "\t" + "sensor2" + "\t" + "sensor3" + "\t" + "sensor4" + "\t" + "Average" + "\n";
+                String s2 = mTime + "\t" + mS1 + "\t" + mS2 + "\t" + mS3 + "\t" + mS4 + "\t" + mAvg;
+                String all = s1 + s2;
+                            */
+
+                btnSave.setEnabled(false);
+            }
+        }
+    };
+
+
+    public boolean isExternalStorageWritable(){
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state)){
+            return true;
+        }
+        return false;
+    }
 }

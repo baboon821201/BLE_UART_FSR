@@ -2888,22 +2888,23 @@ public final class R {
     public static final int submenuarrow=0x7f07006e;
     public static final int submit_area=0x7f07006f;
     public static final int tabMode=0x7f070070;
-    public static final int text=0x7f070071;
-    public static final int text2=0x7f070072;
-    public static final int textSpacerNoButtons=0x7f070073;
-    public static final int textSpacerNoTitle=0x7f070074;
-    public static final int time=0x7f070075;
-    public static final int title=0x7f070076;
-    public static final int titleDividerNoCustom=0x7f070077;
-    public static final int title_template=0x7f070078;
-    public static final int top=0x7f070079;
-    public static final int topPanel=0x7f07007a;
-    public static final int uniform=0x7f07007b;
-    public static final int up=0x7f07007c;
-    public static final int useLogo=0x7f07007d;
-    public static final int withText=0x7f07007e;
-    public static final int wrap=0x7f07007f;
-    public static final int wrap_content=0x7f070080;
+    public static final int tag_transition_group=0x7f070071;
+    public static final int text=0x7f070072;
+    public static final int text2=0x7f070073;
+    public static final int textSpacerNoButtons=0x7f070074;
+    public static final int textSpacerNoTitle=0x7f070075;
+    public static final int time=0x7f070076;
+    public static final int title=0x7f070077;
+    public static final int titleDividerNoCustom=0x7f070078;
+    public static final int title_template=0x7f070079;
+    public static final int top=0x7f07007a;
+    public static final int topPanel=0x7f07007b;
+    public static final int uniform=0x7f07007c;
+    public static final int up=0x7f07007d;
+    public static final int useLogo=0x7f07007e;
+    public static final int withText=0x7f07007f;
+    public static final int wrap=0x7f070080;
+    public static final int wrap_content=0x7f070081;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;
@@ -8694,17 +8695,62 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
+     * <tr><td><code>{@link #FontFamilyFont_android_font android:font}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_android_fontWeight android:fontWeight}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_android_fontStyle android:fontStyle}</code></td><td></td></tr>
      * <tr><td><code>{@link #FontFamilyFont_font com.example.android.bluetoothlegatt.test:font}</code></td><td></td></tr>
      * <tr><td><code>{@link #FontFamilyFont_fontStyle com.example.android.bluetoothlegatt.test:fontStyle}</code></td><td></td></tr>
      * <tr><td><code>{@link #FontFamilyFont_fontWeight com.example.android.bluetoothlegatt.test:fontWeight}</code></td><td></td></tr>
      * </table>
+     * @see #FontFamilyFont_android_font
+     * @see #FontFamilyFont_android_fontWeight
+     * @see #FontFamilyFont_android_fontStyle
      * @see #FontFamilyFont_font
      * @see #FontFamilyFont_fontStyle
      * @see #FontFamilyFont_fontWeight
      */
     public static final int[] FontFamilyFont={
-        0x7f02007b, 0x7f020083, 0x7f020084
+        0x01010532, 0x01010533, 0x0101053f, 0x7f02007b, 
+        0x7f020083, 0x7f020084
       };
+    /**
+     * <p>This symbol is the offset where the {@link android.R.attr#font}
+     * attribute's value can be found in the {@link #FontFamilyFont} array.
+     *
+     * <p>May be a reference to another resource, in the form
+     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+     * attribute in the form
+     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+     *
+     * @attr name android:font
+     */
+    public static final int FontFamilyFont_android_font=0;
+    /**
+     * <p>This symbol is the offset where the {@link android.R.attr#fontStyle}
+     * attribute's value can be found in the {@link #FontFamilyFont} array.
+     *
+     * <p>Must be one of the following constant values.</p>
+     * <table>
+     * <colgroup align="left" />
+     * <colgroup align="left" />
+     * <colgroup align="left" />
+     * <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+     * <tr><td>italic</td><td>1</td><td></td></tr>
+     * <tr><td>normal</td><td>0</td><td></td></tr>
+     * </table>
+     *
+     * @attr name android:fontStyle
+     */
+    public static final int FontFamilyFont_android_fontStyle=2;
+    /**
+     * <p>This symbol is the offset where the {@link android.R.attr#fontWeight}
+     * attribute's value can be found in the {@link #FontFamilyFont} array.
+     *
+     * <p>May be an integer value, such as "<code>100</code>".
+     *
+     * @attr name android:fontWeight
+     */
+    public static final int FontFamilyFont_android_fontWeight=1;
     /**
      * <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.test.R.attr#font}
      * attribute's value can be found in the {@link #FontFamilyFont} array.
@@ -8716,7 +8762,7 @@ public final class R {
      *
      * @attr name com.example.android.bluetoothlegatt.test:font
      */
-    public static final int FontFamilyFont_font=0;
+    public static final int FontFamilyFont_font=3;
     /**
      * <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.test.R.attr#fontStyle}
      * attribute's value can be found in the {@link #FontFamilyFont} array.
@@ -8733,7 +8779,7 @@ public final class R {
      *
      * @attr name com.example.android.bluetoothlegatt.test:fontStyle
      */
-    public static final int FontFamilyFont_fontStyle=1;
+    public static final int FontFamilyFont_fontStyle=4;
     /**
      * <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.test.R.attr#fontWeight}
      * attribute's value can be found in the {@link #FontFamilyFont} array.
@@ -8742,7 +8788,7 @@ public final class R {
      *
      * @attr name com.example.android.bluetoothlegatt.test:fontWeight
      */
-    public static final int FontFamilyFont_fontWeight=2;
+    public static final int FontFamilyFont_fontWeight=5;
     /**
      * <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.test.R.attr#fontProviderAuthority}
      * attribute's value can be found in the {@link #FontFamily} array.

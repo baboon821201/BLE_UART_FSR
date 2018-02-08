@@ -776,22 +776,23 @@ int id submenuarrow 0x7f07008a
 int id submit_area 0x7f07008b
 int id sv1 0x7f07008c
 int id tabMode 0x7f07008d
-int id text 0x7f07008e
-int id text2 0x7f07008f
-int id textSpacerNoButtons 0x7f070090
-int id textSpacerNoTitle 0x7f070091
-int id time 0x7f070092
-int id title 0x7f070093
-int id titleDividerNoCustom 0x7f070094
-int id title_template 0x7f070095
-int id top 0x7f070096
-int id topPanel 0x7f070097
-int id uniform 0x7f070098
-int id up 0x7f070099
-int id useLogo 0x7f07009a
-int id withText 0x7f07009b
-int id wrap 0x7f07009c
-int id wrap_content 0x7f07009d
+int id tag_transition_group 0x7f07008e
+int id text 0x7f07008f
+int id text2 0x7f070090
+int id textSpacerNoButtons 0x7f070091
+int id textSpacerNoTitle 0x7f070092
+int id time 0x7f070093
+int id title 0x7f070094
+int id titleDividerNoCustom 0x7f070095
+int id title_template 0x7f070096
+int id top 0x7f070097
+int id topPanel 0x7f070098
+int id uniform 0x7f070099
+int id up 0x7f07009a
+int id useLogo 0x7f07009b
+int id withText 0x7f07009c
+int id wrap 0x7f07009d
+int id wrap_content 0x7f07009e
 int integer abc_config_activityDefaultDur 0x7f080000
 int integer abc_config_activityShortDur 0x7f080001
 int integer cancel_button_image_alpha 0x7f080002
@@ -1640,10 +1641,13 @@ int styleable FontFamily_fontProviderFetchStrategy 2
 int styleable FontFamily_fontProviderFetchTimeout 3
 int styleable FontFamily_fontProviderPackage 4
 int styleable FontFamily_fontProviderQuery 5
-int[] styleable FontFamilyFont { 0x7f02007b, 0x7f020083, 0x7f020084 }
-int styleable FontFamilyFont_font 0
-int styleable FontFamilyFont_fontStyle 1
-int styleable FontFamilyFont_fontWeight 2
+int[] styleable FontFamilyFont { 0x01010532, 0x01010533, 0x0101053f, 0x7f02007b, 0x7f020083, 0x7f020084 }
+int styleable FontFamilyFont_android_font 0
+int styleable FontFamilyFont_android_fontWeight 1
+int styleable FontFamilyFont_android_fontStyle 2
+int styleable FontFamilyFont_font 3
+int styleable FontFamilyFont_fontStyle 4
+int styleable FontFamilyFont_fontWeight 5
 int[] styleable LinearConstraintLayout { 0x010100c4 }
 int styleable LinearConstraintLayout_android_orientation 0
 int[] styleable LinearLayoutCompat { 0x010100af, 0x010100c4, 0x01010126, 0x01010127, 0x01010128, 0x7f02006e, 0x7f020070, 0x7f0200ce, 0x7f0200ef }

@@ -33,6 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,6 +56,7 @@ public class DeviceScanActivity extends ListActivity {
     private Handler mHandler;
 
     private int ACCESS_COARSE_LOCATION_REQUEST_CODE = 001;
+    private final String PERMISSION_WRITE_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
@@ -78,6 +80,9 @@ public class DeviceScanActivity extends ListActivity {
         }else{
             Toast.makeText(this, "Location permissions already granted", Toast.LENGTH_LONG).show();
         }
+
+        //int permissionCheck1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
 
         if (Build.VERSION.SDK_INT >= 23){
             final LocationManager LocManager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
