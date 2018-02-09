@@ -59,7 +59,7 @@ public class DeviceScanActivity extends ListActivity {
     private final String PERMISSION_WRITE_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 10000;
+    private static final long SCAN_PERIOD = 5000;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

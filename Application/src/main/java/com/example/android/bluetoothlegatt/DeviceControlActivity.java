@@ -67,13 +67,12 @@ public class DeviceControlActivity extends Activity {
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 
     boolean stop=true;
-    ScrollView scrollView;
+    ScrollView scrollView1;
     Button btnScan, btnClear, btnSave;
     String time, saveData;
-    String[] dataArray;
-    String[] dataArray1;
+    String[] dataArray, dataArray1;
     private TextView mConnectionState, test;
-    private TextView mTime, mS1, mS2, mS3, mS4, mAvg;
+    private TextView mTime, mS1, mS2, mS3, mS4, mAvg, mDataField;
     private String mDeviceName;
     private String mDeviceAddress;
 
@@ -201,13 +200,15 @@ public class DeviceControlActivity extends Activity {
         //mGattServicesList.setOnChildClickListener(servicesListClickListner);
         //mConnectionState = (TextView) findViewById(R.id.connection_state);
 
-        mTime = (TextView) findViewById(R.id.showTime);
-        mS1 = (TextView)findViewById(R.id.showS1);
-        mS2 = (TextView)findViewById(R.id.showS2);
-        mS3 = (TextView)findViewById(R.id.showS3);
-        mS4 = (TextView)findViewById(R.id.showS4);
-        mAvg = (TextView)findViewById(R.id.showAvg);
-        scrollView = (ScrollView)findViewById(R.id.sv1);
+        mDataField = (TextView)findViewById(R.id.alldata);
+        //mTime = (TextView) findViewById(R.id.showTime);
+        //mS1 = (TextView)findViewById(R.id.showS1);
+        //mS2 = (TextView)findViewById(R.id.showS2);
+        //mS3 = (TextView)findViewById(R.id.showS3);
+        //mS4 = (TextView)findViewById(R.id.showS4);
+        //mAvg = (TextView)findViewById(R.id.showAvg);
+        scrollView1 = (ScrollView)findViewById(R.id.sv1);
+
         //test=(TextView)findViewById(R.id.TextView0);
         btnScan=(Button)findViewById(R.id.scan);
         btnScan.setOnClickListener(StartScanClickListener);
@@ -290,25 +291,24 @@ public class DeviceControlActivity extends Activity {
     private void displayData(String data) {
         if(!stop) {
             if (data != null) {
-                dataArray = data.split(",");
-                mTime.append(dataArray[0]);
-                mS1.append(dataArray[1]);
-                mS2.append(dataArray[2]);
-                mS3.append(dataArray[3]);
-                mS4.append(dataArray[4]);
-                mAvg.append(dataArray[5]);
-                dataArray1 = data.split("\n,");
+                //dataArray = data.split(",");
+                //mTime.append(dataArray[0]);
+                //mS1.append(dataArray[1]);
+                //mS2.append(dataArray[2]);
+                //mS3.append(dataArray[3]);
+                //mS4.append(dataArray[4]);
+                //mAvg.append(dataArray[5]);
+                dataArray1 = data.split(",");
 
-
-
-                saveData = dataArray1[0] + "\t" + dataArray1[1] + "\t\t" + dataArray1[2] + "\t\t" + dataArray1[3] + "\t\t" + dataArray1[4] + "\t\t" + dataArray1[5] + "\t\t";
-                //mDataField.append(data);
-                scrollView.post(new Runnable() {
+                saveData = dataArray1[0] + ",\t" + dataArray1[1] + ",\t\t" + dataArray1[2] + ",\t\t" + dataArray1[3] + ",\t\t" + dataArray1[4] + ",\t\t" + dataArray1[5];
+                mDataField.append(saveData);
+                scrollView1.post(new Runnable() {
                     @Override
                     public void run() {
-                        scrollView.fullScroll(View.FOCUS_DOWN);
+                        scrollView1.fullScroll(View.FOCUS_DOWN);
                     }
                 });
+
             }
         }
     }
@@ -435,12 +435,13 @@ public class DeviceControlActivity extends Activity {
         public void onClick(View v) {
             Button b = (Button) v;
             if(b.getText().equals("Clear Previous Data")){
-                mTime.setText("");
-                mS1.setText("");
-                mS2.setText("");
-                mS3.setText("");
-                mS4.setText("");
-                mAvg.setText("");
+                //mTime.setText("");
+                //mS1.setText("");
+                //mS2.setText("");
+                //mS3.setText("");
+                //mS4.setText("");
+                //mAvg.setText("");
+                mDataField.setText("");
                 btnScan.setEnabled(true);
                 btnSave.setEnabled(false);
                 btnClear.setEnabled(false);
@@ -456,27 +457,27 @@ public class DeviceControlActivity extends Activity {
             if(b.getText().equals("Save Data")){
                 boolean hasExternalStorage = isExternalStorageWritable();
                 if(hasExternalStorage){
-                    String filename = time + ".txt";
+                    String filename = time + ".csv";
                     Log.d(TAG, "filename = " + filename);
 
                     File path = Environment.getExternalStoragePublicDirectory("/FSR/Test/");
                     File file = new File(path, filename);
                     Log.d(TAG, "path = " + path);
 
-
                     try {
                         path.mkdirs();
                         OutputStream outputStream = new FileOutputStream(file, true);
-                        String s1 = "Time" + "\t\t" + "sensor1" + "\t" + "sensor2" + "\t" + "sensor3" + "\t" + "sensor4" + "\t" + "Average" + "\n";
-                        String s2 = mTime.getText().toString() + "\t"
-                                + mS1.getText().toString() + "\t"
-                                + mS2.getText().toString() + "\t"
-                                + mS3.getText().toString() + "\t"
-                                + mS4.getText().toString() + "\t"
-                                + mAvg.getText().toString();
+                        String s1 = "Time" + ",\t\t" + "sensor1" + ",\t" + "sensor2" + ",\t" + "sensor3" + ",\t" + "sensor4" + ",\t" + "Average" + ",\n";
+                        String s2 = mDataField.getText().toString();
+                        //String s2 = mTime.getText().toString() + "\t"
+                        //        + mS1.getText().toString() + "\t"
+                        //        + mS2.getText().toString() + "\t"
+                        //        + mS3.getText().toString() + "\t"
+                        //        + mS4.getText().toString() + "\t"
+                        //        + mAvg.getText().toString();
 
-                        String dataArrayString = saveData;
-                        String all = s1 + dataArrayString;
+                        //String dataArrayString = saveData;
+                        String all = s1 + s2;
                         outputStream.write(all.getBytes());
                         outputStream.close();
                     } catch (FileNotFoundException e) {

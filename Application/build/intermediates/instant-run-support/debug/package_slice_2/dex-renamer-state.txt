@@ -1,4 +1,4 @@
-#Tue Feb 06 12:16:54 CST 2018
+#Fri Feb 09 11:55:06 CST 2018
 base.0=C\:\\Users\\Lab70826\\AndroidStudioProject\\BLE_UART_FSR\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\22
 path.0=classes.dex
 renamed.0=classes.dex
