@@ -68,7 +68,7 @@ public class DeviceControlActivity extends Activity {
 
     boolean stop=true;
     boolean clear=false;
-    ScrollView scrollView1;
+    ScrollView scrollView;
     Button btnScan, btnClear, btnSave;
     String time;
     String[] dataArray;
@@ -208,7 +208,7 @@ public class DeviceControlActivity extends Activity {
         mS3 = (TextView)findViewById(R.id.showS3);
         mS4 = (TextView)findViewById(R.id.showS4);
         mAvg = (TextView)findViewById(R.id.showAvg);
-        scrollView1 = (ScrollView)findViewById(R.id.sv1);
+        scrollView = (ScrollView)findViewById(R.id.sv1);
 
         //test=(TextView)findViewById(R.id.TextView0);
         btnScan=(Button)findViewById(R.id.scan);
@@ -293,18 +293,18 @@ public class DeviceControlActivity extends Activity {
         if(!stop) {
             if (data != null) {
                 dataArray = data.split(",");
-                mTime.append(dataArray[0]);
-                mS1.append(dataArray[1]);
-                mS2.append(dataArray[2]);
-                mS3.append(dataArray[3]);
-                mS4.append(dataArray[4]);
+                mTime.append(dataArray[0]+"\n");
+                mS1.append(dataArray[1]+"\n");
+                mS2.append(dataArray[2]+"\n");
+                mS3.append(dataArray[3]+"\n");
+                mS4.append(dataArray[4]+"\n");
                 mAvg.append(dataArray[5]);
                 s.append(data);
 
-                scrollView1.post(new Runnable() {
+                scrollView.post(new Runnable() {
                     @Override
                     public void run() {
-                        scrollView1.fullScroll(View.FOCUS_DOWN);
+                        scrollView.fullScroll(View.FOCUS_DOWN);
                     }
                 });
 

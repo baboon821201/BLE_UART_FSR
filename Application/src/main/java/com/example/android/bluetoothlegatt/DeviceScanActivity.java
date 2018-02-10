@@ -32,6 +32,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,6 +68,57 @@ public class DeviceScanActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle(R.string.title_devices);
         mHandler = new Handler();
+
+
+        int Permission_All = 1;
+        String[] Permissions = {Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (!hasPermissions(this, Permissions)){
+            ActivityCompat.requestPermissions(this, Permissions, Permission_All);
+        }
+
+        if (Build.VERSION.SDK_INT >= 23){
+            final LocationManager LocManager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+            //檢查手機的定位功能是否已開啟
+            if (LocManager.isProviderEnabled( LocationManager.GPS_PROVIDER )){
+                if ( android.support.v4.app.ActivityCompat.checkSelfPermission(DeviceScanActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED ){
+                    //已經授權APP使用定位服務，接著的動作
+                }
+                else{
+                    //尚未授權使用定位服務時，向使用者詢問。
+                    //其結果會在 onRequestPermissionsResult 進行動作
+                    android.support.v4.app.ActivityCompat.requestPermissions(DeviceScanActivity.this,
+                            new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                            ACCESS_COARSE_LOCATION_REQUEST_CODE);
+                }
+            }
+            else{
+                //詢問是否要開啟手機定位功能
+                AlertDialog.Builder ad = new AlertDialog.Builder(this);
+                ad.setTitle("需要定位服務");
+                ad.setMessage("如果沒有定位的話，無法搜尋到BLE裝置");
+                ad.setCancelable(false); // 避免點選畫面其他地方而關閉 AlertDialog
+                ad.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                });
+                ad.setNegativeButton("No", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        finish();
+                    }
+                });
+                ad.show();
+            }
+        }
+
+
+        /*
 
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED){
@@ -122,6 +174,8 @@ public class DeviceScanActivity extends ListActivity {
             }
         }
 
+        */
+
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -153,7 +207,7 @@ public class DeviceScanActivity extends ListActivity {
    //        }
    //    }
    //}
-//
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -341,5 +395,15 @@ public class DeviceScanActivity extends ListActivity {
     static class ViewHolder {
         TextView deviceName;
         TextView deviceAddress;
+    }
+    public static boolean hasPermissions(Context context, String... permissions){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && context!=null && permissions!=null){
+            for(String permission: permissions){
+                if(ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
