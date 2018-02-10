@@ -6,22 +6,22 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1518150096628"
+    timestamp="1518159211709"
     token="-41075042762322772"
     verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="777" />
+        duration="1104" />
     <task
         name="instant-run-dex"
-        duration="404" />
+        duration="383" />
     <task
         name="instant-run-transform"
-        duration="36" />
+        duration="31" />
     <task
         name="verifier"
-        duration="8" />
+        duration="6" />
 
     <artifact
         location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\reload-dex\debug\classes.dex"
@@ -29,26 +29,8 @@
 
     <build
         build-mode="FULL"
-        timestamp="1518145050634"
+        timestamp="1518159187958"
         verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
         <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
@@ -56,10 +38,28 @@
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\outputs\apk\debug\Application-debug.apk"
             type="SPLIT_MAIN" />
         <artifact
+            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_1.apk"
@@ -69,43 +69,8 @@
             type="SPLIT" />
     </build>
     <build
-        build-mode="COLD"
-        timestamp="1518148497337"
-        verifier="R_CLASS_CHANGE" >
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\outputs\apk\debug\Application-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1518150059622"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-    </build>
-    <build
         build-mode="HOT_WARM"
-        timestamp="1518150096628"
+        timestamp="1518159211709"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\Lab70826\AndroidStudioProject\BLE_UART_FSR\Application\build\intermediates\reload-dex\debug\classes.dex"

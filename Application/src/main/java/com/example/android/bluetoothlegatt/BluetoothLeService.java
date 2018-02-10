@@ -148,18 +148,18 @@ public class BluetoothLeService extends Service {
             final byte[] data = characteristic.getValue();
             if (data != null && data.length > 0) {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
-                float i1[] = new float [5];
+                float i1 = 0;
                 float i2 = 0;
                 float i3 = 0;
                 float i4 = 0;
                 float i5 = 0;
                 for(byte byteChar : data){
 
-                    i1[0] = data[0]*256 + (data[1] & 0xff);
-                    i1[1] = data[2]*256 + (data[3] & 0xff);
-                    i1[2] = data[4]*256 + (data[5] & 0xff);
-                    i1[3] = data[6]*256 + (data[7] & 0xff);
-                    i1[4] = (i1[0]+i1[1]+i1[2]+i1[3])/4;
+                    i1 = data[0]*256 + (data[1] & 0xff);
+                    i2 = data[2]*256 + (data[3] & 0xff);
+                    i3 = data[4]*256 + (data[5] & 0xff);
+                    i4 = data[6]*256 + (data[7] & 0xff);
+                    i5 = (i1+i2+i3+i4)/4;
                     SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
                     Calendar c = Calendar.getInstance();
                     String t = df.format(c.getTime());
@@ -175,7 +175,7 @@ public class BluetoothLeService extends Service {
                     intent.putExtra(EXTRA_DATA, t + "\n" + 1 + "  " + 2 + "  " + 3 + "  " + 4 + " " + "avg" + "\n"
                             + i1 + "  " + i2 + "  " + i3 + "  " + i4 + "  " + i5);
                                         */
-                    intent.putExtra(EXTRA_DATA, t+","+i1[0]+","+i1[1]+","+i1[2]+","+i1[3]+","+i1[4]+"\n");
+                    intent.putExtra(EXTRA_DATA, t+","+i1+","+i2+","+i3+","+i4+","+i5+"\n");
                 }
             }
         }
