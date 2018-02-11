@@ -393,7 +393,7 @@ public class DeviceControlActivity extends Activity {
         public void onClick(View v) {
             Button b = (Button) v;
             if(b.getText().equals("Start Scan")){
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
                 Calendar c = Calendar.getInstance();
                 String t = df.format(c.getTime());
                 time = t;
@@ -457,7 +457,7 @@ public class DeviceControlActivity extends Activity {
             if(b.getText().equals("Save Data")){
                 boolean hasExternalStorage = isExternalStorageWritable();
                 if(hasExternalStorage){
-                    String filename = time + ".xlsx";
+                    String filename = time + ".csv";
                     Log.d(TAG, "filename = " + filename);
 
                     File path = Environment.getExternalStoragePublicDirectory("/FSR/Test/");
