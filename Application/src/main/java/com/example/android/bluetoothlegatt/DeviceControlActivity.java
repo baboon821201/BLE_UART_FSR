@@ -208,7 +208,7 @@ public class DeviceControlActivity extends Activity {
         mS3 = (TextView)findViewById(R.id.showS3);
         mS4 = (TextView)findViewById(R.id.showS4);
         mAvg = (TextView)findViewById(R.id.showAvg);
-        scrollView = (ScrollView)findViewById(R.id.sv1);
+        //scrollView = (ScrollView)findViewById(R.id.sv1);
 
         //test=(TextView)findViewById(R.id.TextView0);
         btnScan=(Button)findViewById(R.id.scan);
@@ -293,21 +293,30 @@ public class DeviceControlActivity extends Activity {
         if(!stop) {
             if (data != null) {
                 dataArray = data.split(",");
+
+                mTime.setText(dataArray[0]);
+                mS1.setText(dataArray[1]);
+                mS2.setText(dataArray[2]);
+                mS3.setText(dataArray[3]);
+                mS4.setText(dataArray[4]);
+                mAvg.setText(dataArray[5]);
+                /*
                 mTime.append(dataArray[0]+"\n");
                 mS1.append(dataArray[1]+"\n");
                 mS2.append(dataArray[2]+"\n");
                 mS3.append(dataArray[3]+"\n");
                 mS4.append(dataArray[4]+"\n");
                 mAvg.append(dataArray[5]);
+                */
                 s.append(data);
-
+/*
                 scrollView.post(new Runnable() {
                     @Override
                     public void run() {
                         scrollView.fullScroll(View.FOCUS_DOWN);
                     }
                 });
-
+*/
             }
         }
     }
